@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
   <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -11,8 +7,86 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Toolbar :tool-list="toolList" :t="(s: string)=> s"></Toolbar>
+  <Icon name="ele-ArrowUp" />
 </template>
+
+<script setup lang="tsx">
+import { ref } from "vue";
+import Icon from "./components/icon.vue";
+import Toolbar from "./components/toolbar.vue";
+
+
+
+
+
+const toolList = ref([
+  {
+    icon: "ele-Help",
+    name: "help",
+    function: () => console.log("help"),
+  },
+  {
+    icon: "ele-Delete",
+    name: "delete",
+    function: () => console.log("delete"),
+  },
+  {
+    icon: "ele-Refresh",
+    name: "restore",
+    function: () => console.log("restore"),
+  },
+  {
+    icon: "fa-regular fa-floppy-disk",
+    name: "save",
+    function: () => console.log("save"),
+  },
+  {
+    icon: "ele-CopyDocument",
+    name: "copy",
+    // function: () => {
+    //   useClipboard().copy(JSON.stringify(model.value));
+    //   toast.success($lt("success"), $lt("copied"));
+    // },
+  },
+  {
+    icon: "ele-Upload",
+    name: "upload",
+    function: () => console.log("upload"),
+  },
+  {
+    icon: "ele-Download",
+    name: "download",
+    function: () => console.log("download"),
+  },
+  {
+    icon: "ele-RefreshRight",
+    name: "redo",
+    function: () => console.log("redo"),
+  },
+  {
+    icon: "ele-RefreshLeft",
+    name: "undo",
+    function: () => {
+      console.log("undo")
+    },
+  },
+  {
+    icon: "ele-FullScreen",
+    name: "fullscreen",
+    // function: () => {
+    //   isFullScreen.value = !isFullScreen.value;
+    //   const selected: any = toolList.value.find(
+    //     (obj) => obj.name === "fullscreen" || obj.name === "minimize"
+    //   );
+    //   selected.icon =
+    //     selected.icon === "ele-FullScreen" ? "ele-Rank" : "ele-FullScreen";
+    //   selected.name =
+    //     selected.name === "fullscreen" ? "minimize" : "fullscreen";
+    // },
+  },
+]);
+</script>
 
 <style scoped>
 .logo {
