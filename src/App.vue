@@ -1,12 +1,5 @@
 <template>
-	<flow
-		:t="(s: string)=> s"
-		:nodes="Nodes"
-		background
-		controls
-		mini-map
-		:model="model"
-	></flow>
+	<flow :nodes="Nodes" background controls mini-map :model="model"></flow>
 </template>
 
 <script setup lang="tsx">

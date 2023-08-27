@@ -94,7 +94,7 @@ const props = defineProps({
 	saveRestore: Boolean,
 	nodes: Array,
 	model: { type: Array, required: true },
-	t: { type: Function, required: true },
+	t: { type: Function, default: (s: string) => s },
 });
 function objectMap(obj: any, callback: any) {
 	let result: any = [];
@@ -118,7 +118,6 @@ const onNodeResize = (id: string) => {
 	node.class = `${node.class} resizableNode`;
 };
 const onResizeSubmit = (id: string) => {
-	console.log("onResizeSubmit", id);
 	const node = findNode(id) as GraphNode;
 	const initialType = unSubmittedNodes.find((obj) => (obj.id = id))
 		?.type as string;
@@ -487,7 +486,6 @@ html[dir="rtl"] {
 }
 
 .flow_container {
-	direction: ltr;
 	flex-direction: column;
 	display: flex;
 	height: 95%;

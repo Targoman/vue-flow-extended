@@ -1,5 +1,6 @@
 
 
+
 html,
 body,
 #app {
@@ -16,5 +17,111 @@ body,
 	position: relative;
 }
 .el-divider {
-	margin: 5px 0 !important;
+	margin: 10px 0 !important;
 } 
+
+
+
+
+
+
+/* rtl: */
+.el-form-item__label {
+	justify-content: flex-start !important;
+  }
+  .el-input__wrapper {
+	padding: 1px !important;
+  }
+  .el-input__inner {
+	padding: 0 8px !important;
+  }
+  .el-button--primary {
+	margin-left: 0;
+	margin-inline-start: 10px;
+  }
+  input[name='password'], input[type='email'], input[type='emailOrMobile'] {
+	direction: ltr !important;
+  }
+  input[name='password']::placeholder, input[type='email']::placeholder, input[type='emailOrMobile']::placeholder {
+	text-align: right;
+  }
+  span.el-input__suffix {
+	padding: 0 2px;
+  }
+  html[dir='rtl'] .el-switch {
+	transform: scaleX(-1) !important;
+  }
+  html[dir='rtl'] .el-select .el-select__tags {
+	margin-right: 6px;
+  }
+  html[dir='rtl'] .el-select .el-select__tags .el-tag {
+	margin: 2px 0 2px 6px;
+  }
+  html[dir='rtl'] .el-checkbox__label {
+	padding-left: 0 !important;
+	padding-inline-start: 8px !important;
+  }
+  html[dir='rtl'] .el-checkbox-button:last-child .el-checkbox-button__inner {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+	border-top-left-radius: var(--el-border-radius-base) !important;
+	border-bottom-left-radius: var(--el-border-radius-base) !important;
+  }
+  html[dir='rtl'] .el-checkbox-button:first-child .el-checkbox-button__inner {
+	border-top-right-radius: var(--el-border-radius-base) !important;
+	border-bottom-right-radius: var(--el-border-radius-base) !important;
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+  }
+  html[dir='rtl'] .el-radio-button:first-child .el-radio-button__inner {
+	border-right: var(--el-border);
+	border-left: 0;
+	border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base) 0;
+  }
+  html[dir='rtl'] .el-radio-button:last-child .el-radio-button__inner {
+	border-left: var(--el-border);
+	border-radius: var(--el-border-radius-base) 0 0 var(--el-border-radius-base);
+	box-shadow: none !important;
+  }
+  html[dir='rtl'] .el-form-item__label {
+	text-align: right !important;
+	padding: 0 !important;
+	padding-inline-end: 10px !important;
+  }
+  html[dir='rtl'] .password-icon {
+	transform: rotate(90deg) scale(1, -1);
+  }
+  html[dir='rtl'] .el-form-item__error {
+	left: unset;
+	right: 10px !important;
+  }
+  html[dir='rtl'].vpd-container * {
+	font-family: 'IRANSans_FaNum';
+  }
+  html[dir='rtl'] i.el-sub-menu__icon-arrow {
+	left: var(--el-menu-base-level-padding);
+	right: initial !important;
+  }
+  html[dir='rtl'] .el-notification .el-notification__closeBtn {
+	margin-right: 20rem;
+  }
+  html[dir='rtl'] .el-progress--line {
+	position: absolute;
+	bottom: -20px;
+	width: 340px;
+	transform: translateX(65px);
+  }
+  html[dir='rtl'] .el-message-box__header {
+	display: flex;
+	justify-content: space-between;
+  }
+  html[dir='rtl'] .el-message-box__headerbtn {
+	position: unset;
+  }
+  html[dir='rtl'] .el-message-box__content {
+	text-align: right;
+  }
+  html[dir='rtl'] .el-message-box__status ~ .el-message-box__message {
+	padding-right: 30px;
+  }
+  

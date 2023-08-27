@@ -95,7 +95,7 @@ const loog = (a: any) => console.log(a);
 }
 html[dir="rtl"] {
 	.sidebarLogo > .sidebarLogo-icon {
-		left: 0px;
+		left: 0;
 		& > svg {
 			translate: 0 5px;
 			transform: scale(1);
