@@ -75,12 +75,11 @@ import ResizableNode from "./resizableNode.vue";
 
 import { useClipboard, useDebouncedRefHistory } from "@vueuse/core";
 import Sidebar from "./sidebar.vue";
-
 import openModal from "./dialog";
 // import toast from "../toast";
 // import storage from "./modules/storage";
 // import { enuStorageKey } from "./defs/storageKeys";
-// import Upload from "./components/upload.vue";
+import Upload from "./upload.vue";
 import MessageBox from "./MessageBox";
 import { useFlowStore } from "./store";
 import examples from "./examples";
@@ -264,7 +263,15 @@ const toolList = ref([
 				// type: 'error',
 				title: $lt("restoreFlow"),
 				message: $lt("restoreFlowText"),
-				// onSubmit: () => (model.value = storage.get(enuStorageKey.flow, [])),
+				onSubmit: () => {
+					try {
+						model.value = (JSON.parse(
+							window.localStorage.getItem("vueFlow") as string
+						) || model.value) as any;
+					} catch {
+						console.error;
+					}
+				},
 			}),
 	},
 	{
@@ -279,7 +286,7 @@ const toolList = ref([
 				title: $lt("saveFlow"),
 				message: $lt("saveFlowText"),
 				onSubmit: () => {
-					// storage.set({ key: enuStorageKey.flow, value: model.value }),
+					window.localStorage.setItem("vueFlow", JSON.stringify(model.value));
 					// toast.success($lt("success"), $lt("saved"));
 				},
 			}),
@@ -298,7 +305,13 @@ const toolList = ref([
 		function: () =>
 			openModal({
 				title: "Upload",
-				content: '<Upload accept="application/json" onFileChange={onJSONImport} />',
+				content: (
+					<Upload
+						accept="application/json"
+						onFileChange={onJSONImport}
+						t={props.t}
+					/>
+				),
 			}),
 	},
 	{

@@ -15,3 +15,6 @@ body,
 	overflow: hidden;
 	position: relative;
 }
+.el-divider {
+	margin: 5px 0 !important;
+} 
