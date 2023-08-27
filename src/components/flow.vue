@@ -476,7 +476,7 @@ html[dir="rtl"] {
 	direction: ltr;
 	flex-direction: column;
 	display: flex;
-	height: 100%;
+	height: 95%;
 }
 .flow_container aside {
 	// color: #fff;
