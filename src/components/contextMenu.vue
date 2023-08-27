@@ -13,10 +13,10 @@
 		>
 			<ul class="el-dropdown-menu">
 				<!-- <el-cascader-panel :options="options" /> -->
-				<el-text class="m5" style="display: block; text-align: center">
-					{{ selectedElementLabel }}</el-text
+				<ElText class="m5" style="display: block; text-align: center">
+					{{ selectedElementLabel }}</ElText
 				>
-				<el-divider class="my5" />
+				<ElDivider class="my5" />
 				<li
 					class="el-dropdown-menu__item"
 					v-for="option in selectedElementConfig.options"
@@ -60,6 +60,7 @@
 <script setup lang="ts" name="pagesWorkflowContextmenu">
 import { reactive, onMounted, onUnmounted, ref } from "vue";
 import Icon from "./icon.vue";
+import { ElText, ElDivider } from "element-plus";
 
 const props = defineProps({
 	position: {

@@ -1,7 +1,7 @@
 <template>
 	<div class="workflow-tool">
 		<div class="workflow-tool-right">
-			<el-tooltip
+			<ElTooltip
 				v-for="(v, k) in toolList"
 				:key="k"
 				:content="$lt(v.name)"
@@ -10,7 +10,7 @@
 				<div class="workflow-tool-icon" @click="v.function()">
 					<Icon :name="v.icon" />
 				</div>
-			</el-tooltip>
+			</ElTooltip>
 		</div>
 	</div>
 </template>
@@ -18,6 +18,7 @@
 <script setup lang="ts" name="workflowTool">
 import { PropType } from "vue";
 import Icon from "./icon.vue";
+import { ElTooltip } from "element-plus";
 
 interface IntTool {
 	icon: string;
