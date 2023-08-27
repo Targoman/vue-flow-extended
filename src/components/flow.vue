@@ -181,6 +181,7 @@ const onElementEdit = (id: string) =>
 				flowFunctions={flowFunctions}
 				node={findNode(id)}
 				edge={findEdge(id)}
+				t={$lt}
 			/>
 		),
 	});

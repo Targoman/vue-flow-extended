@@ -1,10 +1,7 @@
 <template>
-	<el-button
-		type="primary"
-		@click="emit('resizeSubmit', id)"
-		class="submitBtn"
-		>{{ "save" }}</el-button
-	>
+	<ElButton type="primary" @click="emit('resizeSubmit', id)" class="submitBtn">{{
+		"save"
+	}}</ElButton>
 	<NodeResizer :min-width="100" :min-height="30" />
 
 	<div style="padding: 10px">{{ label }}</div>
@@ -13,6 +10,7 @@
 <script setup lang="ts" name="resizableNode">
 // import { Handle, Position } from '@vue-flow/core'
 import { NodeResizer } from "@vue-flow/node-resizer";
+import { ElButton } from "element-plus";
 
 defineProps(["label", "id"]);
 const emit = defineEmits(["resizeSubmit"]);

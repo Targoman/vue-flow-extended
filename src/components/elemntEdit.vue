@@ -1,11 +1,11 @@
 <template>
-	<!-- <el-row justify="space-between" align="middle"> -->
+	<!-- <ElRow justify="space-between" align="middle"> -->
 	<!-- <el-col :span="10" class="mx10"> -->
-	<el-divider class="mt20 mb10 w100" :content-position="'right'">رنگ</el-divider>
-	<el-row justify="space-evenly" align="middle">
+	<ElDivider class="mt20 mb10 w100" :content-position="'right'">رنگ</ElDivider>
+	<ElRow justify="space-evenly" align="middle">
 		<div>
-			<el-text class="mx3">{{ $lt("color") }} :</el-text>
-			<el-color-picker
+			<ElText class="mx3">{{ $lt("color") }} :</ElText>
+			<ElColorPicker
 				size="large"
 				@change="onStyleChange(node ? 'backgroundColor' : 'stroke', $event)"
 				v-model="color"
@@ -14,8 +14,8 @@
 			/>
 		</div>
 		<div v-if="node">
-			<el-text class="mx3">{{ $lt("textColor") }} :</el-text>
-			<el-color-picker
+			<ElText class="mx3">{{ $lt("textColor") }} :</ElText>
+			<ElColorPicker
 				size="large"
 				@change="onStyleChange('color', $event)"
 				v-model="textColor"
@@ -24,8 +24,8 @@
 			/>
 		</div>
 		<div v-if="node">
-			<el-text class="mx3">{{ $lt("borderColor") }} :</el-text>
-			<el-color-picker
+			<ElText class="mx3">{{ $lt("borderColor") }} :</ElText>
+			<ElColorPicker
 				size="large"
 				@change="onStyleChange('borderColor', $event)"
 				v-model="borderColor"
@@ -33,35 +33,39 @@
 				:predefine="predefineColors"
 			/>
 		</div>
-	</el-row>
+	</ElRow>
 	<!-- </el-col> -->
 	<!-- <el-col :span="10"> -->
 	<el-divider class="mt10 mb20 w100" :content-position="'right'"
 		>محتوا</el-divider
 	>
-	<el-row align="middle">
-		<el-text class="mx3">{{ $lt("label") }} :</el-text>
-		<el-input
+	<ElRow align="middle">
+		<ElText class="mx3">{{ $lt("label") }} :</ElText>
+		<ElInput
 			v-if="node"
 			v-model="node.label"
 			label="dddd"
 			:placeholder="$lt('label')"
 			style="width: 50%"
 		/>
-		<el-input
+		<ElInput
 			v-else-if="edge"
 			v-model="edge.label"
 			:placeholder="$lt('label')"
 			style="width: 50%"
 		/>
-	</el-row>
-	<el-divider class="mt20 mb10 w100" :content-position="'right'"
-		>وضعیت</el-divider
-	>
+	</ElRow>
+	<ElDivider class="mt20 mb10 w100" :content-position="'right'">وضعیت</ElDivider>
 
-	<switch-button v-if="edge" v-model="edge.animated" label="animated: " />
-	<el-row v-if="node">
+	<switch-button
+		name="edge.animated"
+		v-if="edge"
+		v-model="edge.animated"
+		label="animated: "
+	/>
+	<ElRow v-if="node">
 		<switch-button
+			name="sourcePosition"
 			class="mx10"
 			label="sourcePosition: "
 			:disabled="!target"
@@ -69,15 +73,17 @@
 			@input-change="onEdgeChange"
 		></switch-button>
 		<select-input
+			name="sourcePositionSelect"
 			@update:model-value="loog"
 			:disabled="!source"
 			:t="$lt"
 			:options="options"
 			v-model="node.sourcePosition"
 		></select-input>
-	</el-row>
-	<el-row v-if="node">
+	</ElRow>
+	<ElRow v-if="node">
 		<switch-button
+			name="targetPosition"
 			class="mx10"
 			label="targetPosition: "
 			:disabled="!source"
@@ -85,21 +91,24 @@
 			@input-change="onEdgeChange"
 		></switch-button>
 		<select-input
+			name="targetPositionSelect"
 			@update:model-value="loog"
 			:disabled="!target"
 			:t="$lt"
 			:options="options"
 			v-model="node.targetPosition"
 		></select-input>
-	</el-row>
+	</ElRow>
 	<!-- <select-input :t="$lt" label="targetPosition" v-if="node" :options="options" v-model="node.targetPosition"></select-input> -->
 </template>
 
 <script setup lang="ts" name="workflowTool">
 import { PropType, ref } from "vue";
 import { GraphEdge, GraphNode, Position, VueFlowStore } from "@vue-flow/core";
-// import SwitchButton from "../form/inputs/switchButton.vue";
-// import SelectInput from "../form/inputs/selectInputs/selectInput.vue";
+import { ElRow, ElText, ElDivider, ElInput, ElColorPicker } from "element-plus";
+
+import SwitchButton from "./switch.vue";
+import SelectInput from "./select.vue";
 
 const options = ref([
 	Position.Top,
