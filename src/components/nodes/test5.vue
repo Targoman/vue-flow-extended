@@ -30,7 +30,7 @@ function onDragStart() {
 						function: () =>
 							openModal({
 								title: "Edit",
-								content: <ElButton onClick={() => console.log("Test 5")}>Log</ElButton>,
+								content: <ElButton onClick={() => alert("Test 5")}>Log</ElButton>,
 							}),
 					},
 				],

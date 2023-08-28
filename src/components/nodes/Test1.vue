@@ -112,8 +112,6 @@ const generateNodes = () => {
 			},
 		},
 	};
-	console.log([parentNode, childNode1, childNode2]);
-
 	return [parentNode, childNode1, childNode2];
 };
 

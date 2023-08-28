@@ -6,7 +6,6 @@
         :content="$lt(v.name)"
         effect="customized"
       >
-	  <!-- {{console.log(toolsConfig?.disabledTools,v.name)}} -->
         <div v-show="!toolsConfig?.disabledTools.includes(v.name)" class="workflow-tool-icon" @click="v.function()">
           <Icon :name="v.icon" />
         </div>
@@ -19,30 +18,16 @@
 import { PropType } from "vue";
 import Icon from "./icon.vue";
 import { ElTooltip } from "element-plus";
+import { IntTool, typeFlowTools } from "..";
 
-interface IntTool {
-  icon: string;
-  name: string;
-  function: Function;
-}
+
 
 const props = defineProps({
   toolList: Array as PropType<IntTool[]>,
   t: { type: Function, required: true },
   toolsConfig: Object as PropType<{
-    disabledTools: Array<
-      | "download"
-      | "delete"
-      | "fullscreen"
-      | "help"
-      | "restore"
-      | "save"
-      | "upload"
-      | "copy"
-      | "undo"
-      | "redo"
-    >;
-    addTools: any[];
+    disabledTools: typeFlowTools
+    addTools: IntTool[];
   }>,
 });
 const $lt = props.t;

@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts" name="pagesWorkflowContextmenu">
-import { reactive, onMounted, onUnmounted, ref } from "vue";
+import { reactive, onMounted, onUnmounted, ref, Ref } from "vue";
 import Icon from "./icon.vue";
 import { ElText, ElDivider } from "element-plus";
 
@@ -96,7 +96,7 @@ const state = reactive({
 const selectedElementID = ref();
 const selectedElementType = ref();
 const selectedElementLabel = ref();
-const selectedElementConfig = ref({ disabledValues: [], options: [] });
+const selectedElementConfig : Ref<any> = ref({ disabledValues: [], options: [] });
 const openContextmenu = (element: {
 	id: string;
 	elementType: string;
@@ -110,9 +110,6 @@ const openContextmenu = (element: {
 	selectedElementLabel.value = element.label;
 	if (element.config && "contextMenu" in element.config)
 		selectedElementConfig.value = element.config.contextMenu;
-
-	console.log(selectedElementConfig.value);
-
 	setTimeout(() => {
 		state.isShow = true;
 	}, 10);

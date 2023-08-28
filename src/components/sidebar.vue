@@ -21,7 +21,6 @@
 					justify="space-between"
 					align="middle"
 					v-for="node in hiddenNodes"
-					@click="loog(node)"
 					><div :style="node.style" class="vue-flow__node-input">
 						{{ node.label }}
 					</div>
@@ -38,9 +37,7 @@
 import Accordion from "./accordion.vue";
 import Icon from "./icon.vue";
 import createNode from "./createNode.vue";
-// import layoutState from '/@common-layout/store/index'
 import { useFlowStore } from "./store";
-// import { enuSidebarState } from './interfaces/layout'
 const store = useFlowStore();
 const props = defineProps({
 	hiddenNodes: Object,
@@ -52,20 +49,6 @@ const props = defineProps({
 
 const $lt = props.t;
 const onSidebarChange = () => store.setSidebar(!store.getSidebarState());
-
-const loog = (a: any) => console.log(a);
-
-// const showNodes = () => {
-// 	let emitHiddenNodes = props.hiddenNodes
-// 	checkList.value.forEach((item) => {
-// 		const node = findNode(item.nodeId)
-// 		item['checked'] = false
-// 		node.hidden = false
-// 		checkList.value = checkList.value.filter((nodes) => nodes !== item)
-// 		emitHiddenNodes = emitHiddenNodes.filter((nodes: any) => nodes !== item)
-// 		emit('hiddenNodeChange', emitHiddenNodes)
-// 	})
-// }
 </script>
 
 <style lang="scss">

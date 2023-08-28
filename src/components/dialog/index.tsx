@@ -9,8 +9,6 @@ const modal = (info: { title: string; content: string | VNode | Element; width?:
 			}
 		},
 		beforeMount() {
-			
-			console.log("opened");
 			this.showDelay = false
 
 			setTimeout(() => {

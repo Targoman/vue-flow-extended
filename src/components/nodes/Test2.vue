@@ -3,7 +3,7 @@
 		class="vue-flow__node-input circle mt10"
 		style="cursor: grab"
 		:draggable="true"
-		@dragstart="onDragStart($event)"
+		@dragstart="onDragStart()"
 	>
 		Test 2
 	</div>
@@ -13,7 +13,7 @@
 import { useFlowStore } from "../store";
 import openModal from "../dialog";
 
-function onDragStart(event: any) {
+function onDragStart() {
 	useFlowStore().setNode({
 		type: "Test 2",
 		label: "Test 2",

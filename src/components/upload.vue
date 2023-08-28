@@ -126,38 +126,13 @@ const props = defineProps({
 	t: { type: Function, required: true },
 });
 const $lt = props.t;
-// const $lt = makeTranslator({
-// 	largerThanSize: {
-// 		en: `your file is larger than ${props.maxSize} MB`,
-// 		fa: `فایل شما بزرگتر از ${props.maxSize}MB می باشد `,
-// 	},
-// 	dropHere: {
-// 		en: 'Drop file here or',
-// 		fa: 'فایل مورد نظر را به اینجا بکشید یا',
-// 	},
-// 	clickToUpload: {
-// 		en: 'Drop file here or',
-// 		fa: 'برای آپلود کردن کلیک کنید',
-// 	},
-// 	propSize: {
-// 		en: `files with a size less than ${props.maxSize}MB`,
-// 		fa: `فایل با حداکثر اندازه ${props.maxSize}MB`,
-// 	},
-// 	propFormat: {
-// 		en: `and ${props.accept} format`,
-// 		fa: `و فرمت ${props.accept}`,
-// 	},
-// })
 
 const emit = defineEmits(["fileChange"]);
-
 const fileList = ref<UploadUserFile[]>([]);
-
 const dialogImageUrl = ref("");
 const previewType = ref("");
 const dialogVisible = ref(false);
 const thumbnailImg = ref();
-const disabled = ref(false);
 
 const handleRemove = (file: UploadFile) => {
 	fileList.value.splice(fileList.value.indexOf(file), 1);
@@ -165,7 +140,7 @@ const handleRemove = (file: UploadFile) => {
 
 const handlePictureCardPreview: UploadProps["onPreview"] = (uploadFile) => {
 	if (uploadFile.raw) {
-		const [fileType, fileFormat] = uploadFile.raw.type?.split("/");
+		const [fileType] = uploadFile.raw.type?.split("/");
 		previewType.value = fileType;
 		dialogImageUrl.value = uploadFile.url!;
 		dialogVisible.value = true;
@@ -202,9 +177,6 @@ const audio =
 const video =
 	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAfpJREFUWEftmb8rRlEYxz9vJsquLDKQRWKQDFIoA6X8Af4HZbAgk8VuIovFIJSQWKSUko1BSQYLSski+ta9uq57zz33vO6P9J71Pue5n/s953nOeZ5bwTzagD5gLcHO9HgR2AXOXXxUDJN6gGOg0cVxaM470AI8pvUVB9gFnAINaR0m2A8CJ2l8xgF+Bpx8AKPAYRrHwAywFDGnKY2SNoAjDnDiqgfeIgC13AO2ezIKcBsY8xzfAO0plQuaB1ci7KbXBjIJcAGYzwjQKnCKBPS/2xg4ZQAUaGzglAUwNnDKAigV77xk/mPLlwlQYBPAVpAwa0Adk9MJWWAu8HwHGM8T0CZD7QM6DDRKCag866tYA7RZ0rBNpgrqzNbZrSvULHDmQJgLoM815W30pxSguQKKS7fmde8+aMOZO6APtQGsWtwlCwMUqG7jUrTZIGWhgD7XPdAJvESAlgLwGeiIqUUKB1RdvAI8xCxzYYBHwJBFGBcC2A1ceUGSxJgb4Cuw7FBkZQo4DGx6uW4ySaoi9qDe2QrcOsJpWqYKVsH1PbUGWK2K/1vBaptHNupeA+rkWhdNMgx2pVzbbzZwSlMHAcNfZbBNf9C1gZkEKLg9oM4FMKsWcBy0Gp39wGXYIK8muklNHZFqwV1EGZkAZf8XvyFMcCqyVAkqGCPHFztPvym19fDQAAAAAElFTkSuQmCC";
 
-// watch(fileList, (newValue: UploadUserFile[]) => {
-// 	console.log(fileList)
-// })
 </script>
 
 <style scoped>
@@ -214,9 +186,7 @@ const video =
 .el-upload-list--picture-card .el-upload-list__item-actions span {
 	display: inline-flex;
 }
-/* .el-upload-list--picture-card:hover .el-upload-list__item-actions {
-	opacity: 1;
-} */
+
 .el-upload-list--picture-card
 	.el-upload-list__item:hover
 	.el-upload-list__item-actions {

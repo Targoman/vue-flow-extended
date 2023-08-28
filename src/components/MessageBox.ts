@@ -1,6 +1,4 @@
 import { ElMessageBox, messageType } from "element-plus";
-import { makeTranslator } from "/@common/modules/i18n";
-
 // const $lt = makeTranslator()
 export default (data: {
 	title: string;

@@ -1,11 +1,11 @@
 <template>
 	<ElFormItem :required="required" :label="label" :prop="name">
-		<ElSwitch v-model="value" :size="size" :disabled="disabled"></ElSwitch>
+		<ElSwitch v-model="(value as string)" :size="size" :disabled="disabled"></ElSwitch>
 	</ElFormItem>
 </template>
 
 <script lang="ts" setup>
-import { watch } from "vue";
+import { watch ,PropType} from "vue";
 import { ElSwitch, ElFormItem } from "element-plus";
 
 defineProps({

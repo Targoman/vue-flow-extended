@@ -43,14 +43,14 @@
 		<ElText class="mx3">{{ $lt("label") }} :</ElText>
 		<ElInput
 			v-if="node"
-			v-model="node.label"
+			v-model="(node.label as string)"
 			label="dddd"
 			:placeholder="$lt('label')"
 			style="width: 50%"
 		/>
 		<ElInput
 			v-else-if="edge"
-			v-model="edge.label"
+			v-model="(edge.label as string)"
 			:placeholder="$lt('label')"
 			style="width: 50%"
 		/>
@@ -74,7 +74,7 @@
 		></switch-button>
 		<select-input
 			name="sourcePositionSelect"
-			@update:model-value="loog"
+			@update:model-value="updateNodeInternals"
 			:disabled="!source"
 			:t="$lt"
 			:options="options"
@@ -92,19 +92,18 @@
 		></switch-button>
 		<select-input
 			name="targetPositionSelect"
-			@update:model-value="loog"
+			@update:model-value="updateNodeInternals"
 			:disabled="!target"
 			:t="$lt"
 			:options="options"
 			v-model="node.targetPosition"
 		></select-input>
 	</ElRow>
-	<!-- <select-input :t="$lt" label="targetPosition" v-if="node" :options="options" v-model="node.targetPosition"></select-input> -->
 </template>
 
 <script setup lang="ts" name="workflowTool">
 import { PropType, ref } from "vue";
-import { GraphEdge, GraphNode, Position, VueFlowStore } from "@vue-flow/core";
+import {/* GraphEdge, GraphNode,*/ Position, VueFlowStore } from "@vue-flow/core";
 import { ElRow, ElText, ElDivider, ElInput, ElColorPicker } from "element-plus";
 
 import SwitchButton from "./switch.vue";
@@ -117,21 +116,17 @@ const options = ref([
 	Position.Right,
 ]);
 const props = defineProps({
-	node: Object as PropType<GraphNode>,
-	edge: Object as PropType<GraphEdge>,
+	node: Object as PropType<any>,
+	edge: Object as PropType<any>,
 	flowFunctions: Object as PropType<VueFlowStore>,
 	t: { type: Function, required: true },
 });
 const $lt = props.t;
-const loog = (a) => {
+const updateNodeInternals = () => {
 	setTimeout(() => {
-		// props.flowFunctions?.applyNodeChanges(props.flowFunctions.nodes)
-		// props.flowFunctions?.updateConnection()
 		props.flowFunctions?.updateNodeInternals();
 	}, 10);
 };
-// const emit = defineEmits(["edit"]);
-
 const onStyleChange = (type: any, value: any) => {
 	if (props.node)
 		props.node["style"] = { ...props.node["style"], [type]: value };
