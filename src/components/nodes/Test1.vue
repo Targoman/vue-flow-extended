@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="tsx">
-import { PropType, ref } from "vue";
+import { PropType } from "vue";
 import { useFlowStore } from "../store";
 import { GraphNode, VueFlowStore } from "@vue-flow/core";
 import openModal from "../dialog";
