@@ -1,6 +1,10 @@
 <template>
 	<span :class="isFullScreen ? 'fullscreen' : ''">
-		<Toolbar :tool-list="toolList" :t="(s: string)=> s" />
+		<Toolbar
+      :toolsConfig="toolsConfig"
+      :tool-list="toolList"
+      :t="(s: string)=> s"
+    />
 		<div class="flow_container" @drop="onDrop">
 			<VueFlow
 				@contextmenu.prevent=""
@@ -93,6 +97,21 @@ const props = defineProps({
 	model: { type: Array, required: true },
 	t: { type: Function, default: (s: string) => s },
 	vueFlowOptions: Object,
+    toolsConfig: Object as PropType<{
+    disabledTools: Array<
+      | "download"
+      | "delete"
+      | "fullscreen"
+      | "help"
+      | "restore"
+      | "save"
+      | "upload"
+      | "copy"
+	  | "undo"
+      | "redo"
+    >;
+    addTools: any[];
+  }>
 });
 const $lt = props.t;
 function objectMap(obj: any, callback: any) {

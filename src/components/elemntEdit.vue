@@ -1,7 +1,7 @@
 <template>
 	<!-- <ElRow justify="space-between" align="middle"> -->
 	<!-- <el-col :span="10" class="mx10"> -->
-	<ElDivider class="mt20 mb10 w100" :content-position="'right'">رنگ</ElDivider>
+	<ElDivider class="mt20 mb10 w100" :content-position="'right'">color</ElDivider>
 	<ElRow justify="space-evenly" align="middle">
 		<div>
 			<ElText class="mx3">{{ $lt("color") }} :</ElText>
@@ -37,7 +37,7 @@
 	<!-- </el-col> -->
 	<!-- <el-col :span="10"> -->
 	<el-divider class="mt10 mb20 w100" :content-position="'right'"
-		>محتوا</el-divider
+		>content</el-divider
 	>
 	<ElRow align="middle">
 		<ElText class="mx3">{{ $lt("label") }} :</ElText>
@@ -55,7 +55,7 @@
 			style="width: 50%"
 		/>
 	</ElRow>
-	<ElDivider class="mt20 mb10 w100" :content-position="'right'">وضعیت</ElDivider>
+	<ElDivider class="mt20 mb10 w100" :content-position="'right'">state</ElDivider>
 
 	<switch-button
 		name="edge.animated"
