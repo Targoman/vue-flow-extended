@@ -1,28 +1,29 @@
 <template>
-	<flow :nodes="Nodes" background controls mini-map :model="model"></flow>
+	<flow
+		:predefineNodes="PredefineNodes"
+		background
+		controls
+		mini-map
+		:model="model"
+	></flow>
 </template>
-
 <script setup lang="tsx">
 import flow from "./components/flow.vue";
+import test5 from "./components/nodes/test5.vue";
 
-enum enumNodes {
+enum enumPredefineNodes {
 	Test3 = "Test3",
 	Test2 = "Test2",
 	Test1 = "Test1",
 }
-const Nodes: (enumNodes | { type: string; text: string })[] = [
-	enumNodes.Test3,
-	enumNodes.Test2,
-	enumNodes.Test1 /* with nested nodes*/,
-	{ type: "Rectangle", text: "Test 3" },
-	// { type: 'Rectangle', text: 'sepideh' },
-	// { type: 'circle', text: 'mohsen' },
-	// { type: 'circle', text: 'sepideh' },
-	// { type: 'oval', text: 'vahid' },
-	// { type: 'square', text: 'square' },
-	// { type: 'square', text: 'square' },
-	// { type: 'square', text: 'square' },
-];
+const PredefineNodes: (enumPredefineNodes | { type: string; text: string })[] =
+	[
+		enumPredefineNodes.Test3,
+		enumPredefineNodes.Test2,
+		enumPredefineNodes.Test1 /* with nested nodes*/,
+		test5,
+		// { type: "Rectangle", text: "Test 4" },
+	];
 const model = [
 	{ id: "1", type: "input", label: "Node 1", position: { x: 250, y: 5 } },
 	{ id: "2", label: "Node 2", position: { x: 100, y: 100 } },

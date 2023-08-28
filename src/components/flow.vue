@@ -12,6 +12,7 @@
 				@edge-context-menu="onContextmenu"
 				@edge-update="onEdgeUpdate"
 				@drop="onNodeDrag"
+				:="props.vueFlowOptions"
 			>
 				<template #node-resizable="resizableNodeProps">
 					<ResizableNode @resize-submit="onResizeSubmit" :="resizableNodeProps" />
@@ -41,7 +42,7 @@
 			</VueFlow>
 			<Sidebar
 				:flowFunctions="flowFunctions"
-				:nodes="nodes"
+				:predefineNodes="predefineNodes"
 				:hidden-nodes="model.filter((node: any) => node.hidden)"
 				:t="t"
 			/>
@@ -88,9 +89,10 @@ const props = defineProps({
 	miniMap: Boolean,
 	controls: Boolean,
 	saveRestore: Boolean,
-	nodes: Array,
+	predefineNodes: Array,
 	model: { type: Array, required: true },
 	t: { type: Function, default: (s: string) => s },
+	vueFlowOptions: Object,
 });
 const $lt = props.t;
 function objectMap(obj: any, callback: any) {
@@ -370,6 +372,8 @@ const {
 	removeNodes,
 } = useVueFlow({});
 const flowFunctions = useVueFlow({});
+defineExpose({ flowFunctions });
+
 function onEdgeUpdate(data: { edge: GraphEdge; connection: Connection }) {
 	return updateEdge(data.edge, data.connection);
 }
