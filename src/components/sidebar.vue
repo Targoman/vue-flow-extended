@@ -10,7 +10,10 @@
 		<el-collapse>
 			<Accordion :title="$lt('Nodes')">
 				<el-row justify="space-around">
-					<createNode :flowFunctions="flowFunctions" :nodes="nodes"></createNode>
+					<createNode
+						:flowFunctions="flowFunctions"
+						:nodes="predefineNodes"
+					></createNode>
 				</el-row>
 			</Accordion>
 			<Accordion :title="$lt('hiddenNodes')">
@@ -41,7 +44,7 @@ import { useFlowStore } from "./store";
 const store = useFlowStore();
 const props = defineProps({
 	hiddenNodes: Object,
-	nodes: Object,
+	predefineNodes: Object,
 	flowFunctions: Object,
 	t: { type: Function, required: true },
 	title: String,

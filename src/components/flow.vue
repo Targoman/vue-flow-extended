@@ -1,6 +1,10 @@
 <template>
 	<span :class="isFullScreen ? 'fullscreen' : ''">
-		<Toolbar :tool-list="toolList" :t="(s: string)=> s" />
+		<Toolbar
+      :toolsConfig="toolsConfig"
+      :tool-list="toolList"
+      :t="(s: string)=> s"
+    />
 		<div class="flow_container" @drop="onDrop">
 			<VueFlow
 				@contextmenu.prevent=""
@@ -12,6 +16,7 @@
 				@edge-context-menu="onContextmenu"
 				@edge-update="onEdgeUpdate"
 				@drop="onNodeDrag"
+				:="props.vueFlowOptions"
 			>
 				<template #node-resizable="resizableNodeProps">
 					<ResizableNode @resize-submit="onResizeSubmit" :="resizableNodeProps" />
@@ -41,7 +46,7 @@
 			</VueFlow>
 			<Sidebar
 				:flowFunctions="flowFunctions"
-				:nodes="nodes"
+				:predefineNodes="predefineNodes"
 				:hidden-nodes="model.filter((node: any) => node.hidden)"
 				:t="t"
 			/>
@@ -61,6 +66,7 @@ import {
 	Connection,
 } from "@vue-flow/core";
 import { ref, defineAsyncComponent, Ref, PropType, reactive } from "vue";
+import { ElButton } from "element-plus";
 import "@vue-flow/core/dist/style.css";
 import "@vue-flow/core/dist/theme-default.css";
 import "@vue-flow/minimap/dist/style.css";
@@ -70,15 +76,10 @@ import { Controls } from "@vue-flow/controls";
 import { MiniMap } from "@vue-flow/minimap";
 import Toolbar from "./toolbar.vue";
 import ElemntEdit from "./elemntEdit.vue";
-import { ElButton } from "element-plus";
 import ResizableNode from "./resizableNode.vue";
-
 import { useClipboard, useDebouncedRefHistory } from "@vueuse/core";
 import Sidebar from "./sidebar.vue";
 import openModal from "./dialog";
-// import toast from "../toast";
-// import storage from "./modules/storage";
-// import { enuStorageKey } from "./defs/storageKeys";
 import Upload from "./upload.vue";
 import MessageBox from "./MessageBox";
 import { useFlowStore } from "./store";
@@ -92,10 +93,27 @@ const props = defineProps({
 	miniMap: Boolean,
 	controls: Boolean,
 	saveRestore: Boolean,
-	nodes: Array,
+	predefineNodes: Array,
 	model: { type: Array, required: true },
 	t: { type: Function, default: (s: string) => s },
+	vueFlowOptions: Object,
+    toolsConfig: Object as PropType<{
+    disabledTools: Array<
+      | "download"
+      | "delete"
+      | "fullscreen"
+      | "help"
+      | "restore"
+      | "save"
+      | "upload"
+      | "copy"
+	  | "undo"
+      | "redo"
+    >;
+    addTools: any[];
+  }>
 });
+const $lt = props.t;
 function objectMap(obj: any, callback: any) {
 	let result: any = [];
 	Object.keys(obj).forEach(async function (key, index) {
@@ -104,9 +122,9 @@ function objectMap(obj: any, callback: any) {
 	return result;
 }
 
-const $lt = props.t;
 const model = ref(props.model) as Ref<Element[]>;
 
+const emit = defineEmits(["copy", "storageSave", "restore"]);
 const contextmenuNodeRef = ref();
 const isFullScreen = ref(false);
 const unSubmittedNodes: { id: string; type: string }[] = reactive([]);
@@ -201,13 +219,10 @@ const onJSONImport = async (file: any) => {
 	setTimeout(() => {
 		model.value = JSON.parse(data);
 	}, 10);
-	// toast.success("Imported", "Yeaaaayyyyy");
 	// for closing the modal:
 	const overlays = document.querySelectorAll(".el-overlay");
 	overlays.forEach((overlay) => overlay.remove());
 };
-// console.log(examples);
-
 const toolList = ref([
 	{
 		icon: "ele-Help",
@@ -267,6 +282,7 @@ const toolList = ref([
 						model.value = (JSON.parse(
 							window.localStorage.getItem("vueFlow") as string
 						) || model.value) as any;
+						emit("restore", model.value);
 					} catch {
 						console.error;
 					}
@@ -286,7 +302,7 @@ const toolList = ref([
 				message: $lt("saveFlowText"),
 				onSubmit: () => {
 					window.localStorage.setItem("vueFlow", JSON.stringify(model.value));
-					// toast.success($lt("success"), $lt("saved"));
+					emit("storageSave", model.value);
 				},
 			}),
 	},
@@ -295,7 +311,7 @@ const toolList = ref([
 		name: "copy",
 		function: () => {
 			useClipboard().copy(JSON.stringify(model.value));
-			// toast.success($lt("success"), $lt("copied"));
+			emit("copy", model.value);
 		},
 	},
 	{
@@ -375,6 +391,8 @@ const {
 	removeNodes,
 } = useVueFlow({});
 const flowFunctions = useVueFlow({});
+defineExpose({ flowFunctions });
+
 function onEdgeUpdate(data: { edge: GraphEdge; connection: Connection }) {
 	return updateEdge(data.edge, data.connection);
 }
