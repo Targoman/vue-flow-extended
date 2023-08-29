@@ -13,16 +13,11 @@
 
 <script setup lang="ts">
 import { defineAsyncComponent } from "vue";
-// import IntfLooseObject from "./interfaces/looseObject";
-// import { useFlowStore } from "./store";
 
 defineProps({
 	nodes: Object,
 	flowFunctions: Object,
 });
-// function onDragStart(_event: any, nodeType: string, label: string) {
-// 	useFlowStore().setNode({ type: nodeType, label: label });
-// }
 const predefineNodes: any = import.meta.glob("./nodes/**.vue");
 const getNode = (n: string) =>
 	defineAsyncComponent(predefineNodes[`./nodes/${n}.vue`]);

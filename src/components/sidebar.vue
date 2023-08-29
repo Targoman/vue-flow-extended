@@ -2,11 +2,11 @@
 	<div class="sidebarLogo">
 		<Icon
 			class="sidebarLogo-icon"
-			:name="store.getSidebarState() ? 'ele-ArrowLeftBold' : 'ele-ArrowRightBold'"
+			:name="getSidebarState() ? 'ele-ArrowLeftBold' : 'ele-ArrowRightBold'"
 			@click="onSidebarChange"
 		/>
 	</div>
-	<el-aside class="flowSidebar" v-show="store.getSidebarState()">
+	<el-aside class="flowSidebar" v-show="getSidebarState()">
 		<el-collapse>
 			<Accordion :title="$lt('Nodes')">
 				<el-row justify="space-around">
@@ -17,28 +17,23 @@
 				</el-row>
 			</Accordion>
 			<Accordion :title="$lt('hiddenNodes')">
-				<el-row
-					justify="space-between"
-					align="middle"
-					v-for="node in hiddenNodes"
+				<el-row justify="space-between" align="middle" v-for="node in hiddenNodes"
 					><div :style="node.style" class="vue-flow__node-input">
 						{{ node.label }}
 					</div>
-					<el-button type="primary" @click="node.hidden = false"
-						>برگرداندن</el-button
-					>
+					<el-button type="primary" @click="node.hidden = false">{{
+						$lt("bring it back")
+					}}</el-button>
 				</el-row>
 			</Accordion>
 		</el-collapse>
 	</el-aside>
 </template>
 <script setup lang="ts">
-// import { useVueFlow } from '@vue-flow/core'
 import Accordion from "./accordion.vue";
 import Icon from "./icon.vue";
 import createNode from "./createNode.vue";
-import { useFlowStore } from "./store";
-const store = useFlowStore();
+import { setSidebar, getSidebarState } from "./store";
 const props = defineProps({
 	hiddenNodes: Object,
 	predefineNodes: Object,
@@ -48,7 +43,7 @@ const props = defineProps({
 });
 
 const $lt = props.t;
-const onSidebarChange = () => store.setSidebar(!store.getSidebarState());
+const onSidebarChange = () => setSidebar(!getSidebarState());
 </script>
 
 <style lang="scss">

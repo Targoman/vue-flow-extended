@@ -11,7 +11,7 @@
 
 <script setup lang="tsx">
 import { PropType } from "vue";
-import { useFlowStore } from "../store";
+import { setTempData } from "../store";
 import { GraphNode, VueFlowStore } from "@vue-flow/core";
 import openModal from "../dialog";
 import { ElButton } from "element-plus";
@@ -115,5 +115,5 @@ const generateNodes = () => {
 	return [parentNode, childNode1, childNode2];
 };
 
-const onDragStart = () => useFlowStore().setNode(generateNodes());
+const onDragStart = () =>setTempData(generateNodes());
 </script>

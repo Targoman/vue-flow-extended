@@ -10,11 +10,11 @@
 </template>
 
 <script setup lang="tsx">
-import { useFlowStore } from "../store";
+import { setTempData } from "../store";
 import openModal from "../dialog";
 
 function onDragStart() {
-	useFlowStore().setNode({
+	setTempData({
 		type: "Test 2",
 		label: "Test 2",
 		class: "circle",

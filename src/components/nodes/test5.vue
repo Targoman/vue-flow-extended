@@ -11,11 +11,11 @@
 
 <script setup lang="tsx">
 import { ElButton } from "element-plus";
-import { useFlowStore } from "../store";
+import { setTempData } from "../store";
 import openModal from "../dialog";
 
 function onDragStart() {
-	useFlowStore().setNode({
+	setTempData({
 		label: "Test 5 node",
 		style: {
 			backgroundColor: "rgba(139, 92, 246, 0.5)",
