@@ -62,10 +62,6 @@
 					>
 						<Icon name="ele-Delete" />
 					</span>
-					<!-- <span v-if="typeFileInput === 'photoWall'" class="el-upload-list__item-delete" @click="handleDownload(file)">
-						<el-icon size="30"><Download /></el-icon>
-					</span> -->
-					<!-- </el-row> -->
 				</span>
 			</ElRow>
 		</template>
@@ -79,14 +75,6 @@
 	</ElUpload>
 
 	<ElDialog v-model="dialogVisible">
-		<!-- <el-image
-			v-if="previewType === 'image'"
-			style="display: block; margin: 0 auto; max-width: 650px; max-height: 400px"
-			:src="dialogImageUrl"
-			alt="Preview Image"
-			:preview-src-list="[dialogImageUrl]"
-			preview-teleported
-		/> -->
 		<embed
 			v-if="previewType === 'application'"
 			:src="dialogImageUrl"

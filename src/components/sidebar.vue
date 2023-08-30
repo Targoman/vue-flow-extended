@@ -6,30 +6,31 @@
 			@click="onSidebarChange"
 		/>
 	</div>
-	<el-aside class="flowSidebar" v-show="getSidebarState()">
-		<el-collapse>
+	<ElAside class="flowSidebar" v-show="getSidebarState()">
+		<ElCollapse>
 			<Accordion :title="$lt('Nodes')">
-				<el-row justify="space-around">
+				<ElRow justify="space-around">
 					<createNode
 						:flowFunctions="flowFunctions"
 						:nodes="predefineNodes"
 					></createNode>
-				</el-row>
+				</ElRow>
 			</Accordion>
 			<Accordion :title="$lt('hiddenNodes')">
-				<el-row justify="space-between" align="middle" v-for="node in hiddenNodes"
+				<ElRow justify="space-between" align="middle" v-for="node in hiddenNodes"
 					><div :style="node.style" class="vue-flow__node-input">
 						{{ node.label }}
 					</div>
-					<el-button type="primary" @click="node.hidden = false">{{
+					<ElButton type="primary" @click="node.hidden = false">{{
 						$lt("bring it back")
-					}}</el-button>
-				</el-row>
+					}}</ElButton>
+				</ElRow>
 			</Accordion>
-		</el-collapse>
-	</el-aside>
+		</ElCollapse>
+	</ElAside>
 </template>
 <script setup lang="ts">
+import { ElAside, ElCollapse, ElRow, ElButton } from "element-plus";
 import Accordion from "./accordion.vue";
 import Icon from "./icon.vue";
 import createNode from "./createNode.vue";

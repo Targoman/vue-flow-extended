@@ -506,4 +506,83 @@ html[dir="rtl"] {
 		gap: 5px;
 	}
 }
+
+@for $i from 0 through 50 {
+	// **----margins----**:
+	.m#{$i} {
+		margin: #{$i}px !important;
+	}
+	// margin top:
+	.mt#{$i} {
+		margin-top: #{$i}px !important;
+	}
+	// margin bottom:
+	.mb#{$i} {
+		margin-bottom: #{$i}px !important;
+	}
+	// margin y:
+	.my#{$i} {
+		margin-bottom: #{$i}px !important;
+		margin-top: #{$i}px !important;
+	}
+	// margin right:
+	.mr#{$i} {
+		margin-right: #{$i}px !important;
+	}
+	// margin left:
+	.ml#{$i} {
+		margin-left: #{$i}px !important;
+	}
+	// margin x:
+	.mx#{$i} {
+		margin-right: #{$i}px !important;
+		margin-left: #{$i}px !important;
+	}
+	// margin start:
+	.ms#{$i} {
+		margin-inline-start: #{$i}px !important;
+	}
+	// margin end:
+	.me#{$i} {
+		margin-inline-end: #{$i}px !important;
+	}
+	// **----paddings----**:
+	.p#{$i} {
+		padding: #{$i}px !important;
+	}
+	// padding top:
+	.pt#{$i} {
+		padding-top: #{$i}px !important;
+	}
+	// padding bottom:
+	.pb#{$i} {
+		padding-bottom: #{$i}px !important;
+	}
+	// padding y:
+	.py#{$i} {
+		padding-bottom: #{$i}px !important;
+		padding-top: #{$i}px !important;
+	}
+	// padding right:
+	.pr#{$i} {
+		padding-right: #{$i}px !important;
+	}
+	// padding left:
+	.pl#{$i} {
+		padding-left: #{$i}px !important;
+	}
+	// padding x:
+	.px#{$i} {
+		padding-right: #{$i}px !important;
+		padding-left: #{$i}px !important;
+	}
+	// padding start:
+	.ps#{$i} {
+		padding-inline-start: #{$i}px !important;
+	}
+	// padding end:
+	.pe#{$i} {
+		padding-inline-end: #{$i}px !important;
+	}
+}
 </style>

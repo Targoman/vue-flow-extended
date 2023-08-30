@@ -36,8 +36,8 @@
 	</ElRow>
 	<!-- </el-col> -->
 	<!-- <el-col :span="10"> -->
-	<el-divider class="mt10 mb20 w100" :content-position="'right'"
-		>content</el-divider
+	<ElDivider class="mt10 mb20 w100" :content-position="'right'"
+		>content</ElDivider
 	>
 	<ElRow align="middle">
 		<ElText class="mx3">{{ $lt("label") }} :</ElText>
@@ -103,7 +103,10 @@
 
 <script setup lang="ts" name="workflowTool">
 import { PropType, ref } from "vue";
-import {/* GraphEdge, GraphNode,*/ Position, VueFlowStore } from "@vue-flow/core";
+import {
+	/* GraphEdge, GraphNode,*/ Position,
+	VueFlowStore,
+} from "@vue-flow/core";
 import { ElRow, ElText, ElDivider, ElInput, ElColorPicker } from "element-plus";
 
 import SwitchButton from "./switch.vue";

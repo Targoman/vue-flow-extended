@@ -1,5 +1,5 @@
 <template>
-	<el-col
+	<ElCol
 		style="display: flex; justify-content: center; margin-bottom: 5px"
 		:md="12"
 		v-for="n in nodes"
@@ -8,10 +8,12 @@
 			:flowFunctions="flowFunctions"
 			:is="typeof n === 'string' ? getNode(n) : n"
 		/>
-	</el-col>
+	</ElCol>
 </template>
 
 <script setup lang="ts">
+import { ElCol } from "element-plus";
+
 import { defineAsyncComponent } from "vue";
 
 defineProps({

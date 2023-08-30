@@ -1,8 +1,10 @@
 <template>
-	<el-collapse-item :title="title"> <slot /> </el-collapse-item>
+	<ElCollapseItem :title="title"> <slot /> </ElCollapseItem>
 </template>
 
 <script lang="ts" setup>
+import { ElCollapseItem } from "element-plus";
+
 defineProps({
 	title: String,
 });
